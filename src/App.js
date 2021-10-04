@@ -14,10 +14,11 @@ function App() {
         question: 'how do you use React?',
         answer: 'by building components'
     }
-]
+  ]
 
   return (
     <div>
+      <br />
       <Panel items= {items} />
     </div>
   );
