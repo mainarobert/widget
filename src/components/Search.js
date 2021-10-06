@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function Search() {
 
-    const [term, setTerm] = useState("programming");
+    const [term, setTerm] = useState("");
     const [results, setResults] = useState([]);
 
     console.log(results);
@@ -22,13 +22,25 @@ function Search() {
             setResults(data.query.search)
 
         };
-        search();
+
+        if(term){       // if term is an empty string do not search
+            search()
+        }
+;
 
     }, [term]); // whenever we re-render the component and term has changed, run the arrow function
 
+    // render results
     const renderedResults = results.map((result)=>{
         return(
             <div key={ result.pageid } className= "item">
+                <div className="right floated content">
+                    <a  className="ui button"
+                        href= {`https://en.wikipedia.org?curid=${result.pageid}`}
+                    >
+                        go
+                    </a>
+                </div>
                 <div className= "content">
                     <div className= "header">
                         { result.title }
@@ -51,7 +63,7 @@ function Search() {
                     />
                 </div>
             </div>
-            <div className= "ui celled results">
+            <div className="ui celled result">
                 { renderedResults }
             </div>
         </div>
