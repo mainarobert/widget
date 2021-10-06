@@ -19,8 +19,8 @@ const Panel = ({ items }) => {
                     className= {`title ${active}`}             // active classnames {semantic ui} control which element will be expanded
                     onClick= { () => onQuestionClick(index)} // wrapped onQuestionClick with arrow function so that we can pass to it index and prevent it being called when page re-renders
                 >
-                    <i className="dropdown icon"></i>
-                    { item.question}
+                <i className="dropdown icon"></i>
+                { item.question}
                 </div>
                 <div className= {`content ${active}`}>
                     <p>{ item.answer }</p>

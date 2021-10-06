@@ -1,4 +1,5 @@
 import Panel from './components/Panel'
+import Search from './components/Search';
 
 function App() {
   const items = [
@@ -19,7 +20,8 @@ function App() {
   return (
     <div>
       <br />
-      <Panel items= {items} />
+      {/* <Panel items= {items} /> */}
+      <Search />
     </div>
   );
 }
