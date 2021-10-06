@@ -3,11 +3,14 @@ import axios from 'axios';
 
 function Search() {
 
-    const [term, setTerm] = useState("");
+    const [term, setTerm] = useState("programming");
+    const [results, setResults] = useState([]);
+
+    console.log(results);
 
     useEffect(() =>{
         const search = async () => {    // recommmended approach to use async inside useEffect hook
-            await axios.get('https://en.wikipedia.org/w/api.php', {
+            const { data }= await axios.get('https://en.wikipedia.org/w/api.php', {
                 params: {
                     action: 'query',
                     list: 'search',
@@ -16,10 +19,25 @@ function Search() {
                     srsearch: term
                 }
             });
-        };
-        search()
+            setResults(data.query.search)
 
-    }, [term]) // whenever we re-render the component and term has changed, run the arrow function
+        };
+        search();
+
+    }, [term]); // whenever we re-render the component and term has changed, run the arrow function
+
+    const renderedResults = results.map((result)=>{
+        return(
+            <div key={ result.pageid } className= "item">
+                <div className= "content">
+                    <div className= "header">
+                        { result.title }
+                    </div>
+                    { result.snippet }
+                </div>
+            </div>
+        )
+    })
 
     return (
         <div>
@@ -32,6 +50,9 @@ function Search() {
                         onChange= {e => setTerm(e.target.value)}
                     />
                 </div>
+            </div>
+            <div className= "ui celled results">
+                { renderedResults }
             </div>
         </div>
     )
