@@ -23,14 +23,20 @@ function Search() {
 
         };
 
-        const timeoutId= setTimeout(()=>{
-            if(term){       // if term is an empty string do not search to prevent error
-                search()
-            }
-        }, 700);
 
-        return ()=> {                   // useEffect hook cleanup: the only thing we are allowed to return inside the useEffect hook is another function
-            clearTimeout(timeoutId)
+        // detect whether this is the first time component is being rendered
+        if(term && !results.length) {
+            search();
+        } else {
+            const timeoutId= setTimeout(()=>{
+                if(term){       // if term is an empty string do not search to prevent error
+                    search()
+                }
+            }, 800);
+
+            return ()=> {                   // useEffect hook cleanup: the only thing we are allowed to return inside the useEffect hook is another function
+                clearTimeout(timeoutId)
+            }
         };
 
     }, [term]); // whenever we re-render the component and term has changed, run the arrow function
