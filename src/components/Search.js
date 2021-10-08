@@ -29,7 +29,7 @@ function Search() {
             }
         }, 700);
 
-        return ()=> {
+        return ()=> {                   // useEffect hook cleanup: the only thing we are allowed to return inside the useEffect hook is another function
             clearTimeout(timeoutId)
         };
 
