@@ -23,10 +23,15 @@ function Search() {
 
         };
 
-        if(term){       // if term is an empty string do not search
-            search()
-        }
-;
+        const timeoutId= setTimeout(()=>{
+            if(term){       // if term is an empty string do not search to prevent error
+                search()
+            }
+        }, 700);
+
+        return ()=> {
+            clearTimeout(timeoutId)
+        };
 
     }, [term]); // whenever we re-render the component and term has changed, run the arrow function
 
