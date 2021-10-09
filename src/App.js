@@ -1,3 +1,4 @@
+import Dropdown from './components/Dropdown';
 import Panel from './components/Panel'
 import Search from './components/Search';
 
@@ -15,13 +16,29 @@ function App() {
         question: 'how do you use React?',
         answer: 'by building components'
     }
-  ]
+  ];
+
+  const options = [
+    {
+      label: 'color red',
+      value: 'red'
+    },
+    {
+      label: 'color black',
+      value: 'black'
+    },
+    {
+      label: 'color green',
+      value: 'green'
+    }
+  ];
 
   return (
     <div>
       <br />
       {/* <Panel items= {items} /> */}
-      <Search />
+      {/* <Search /> */}
+      <Dropdown options= {options} />
     </div>
   );
 }
