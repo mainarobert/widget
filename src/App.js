@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Dropdown from './components/Dropdown';
 import Panel from './components/Panel'
 import Search from './components/Search';
@@ -33,12 +34,18 @@ function App() {
     }
   ];
 
+  const [selected, setSelected] = useState(options[0])
+
   return (
     <div>
       <br />
       {/* <Panel items= {items} /> */}
       {/* <Search /> */}
-      <Dropdown options= {options} />
+      <Dropdown
+        options= {options} 
+        selected= {selected}
+        onSelectedChange= {setSelected}
+      />
     </div>
   );
 }
